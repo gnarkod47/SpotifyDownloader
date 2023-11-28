@@ -46,10 +46,10 @@ def download_playlist(playlist_id, output_dir, client_id, client_secret):
             print(f'No search results for: {song_name} by {artist_name}')
 
 if __name__ == '__main__':
-    client_id = '2c00c05a2ba9483ba0a4df441d26c090'
-    client_secret = '6680c05d9c3c47a4a35d17434a244427'
-    playlist_id = '7xmpNYZ15D6b43BHzYQCLt'
-    output_directory = r"C:\Users\gnark\Downloads\Spotify playlist"
+    client_id = '' #paste your client_id
+    client_secret = '' #paste your client_secret
+    playlist_id = '' #playlist id in you spotify playlist share link
+    output_directory = r"" #the path to which the songs should be downloaded
     download_playlist(playlist_id, output_directory, client_id, client_secret)
 
 
