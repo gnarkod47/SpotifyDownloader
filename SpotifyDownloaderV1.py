@@ -1,4 +1,5 @@
 import spotipy
+import re
 from spotipy.oauth2 import SpotifyClientCredentials
 from youtubesearchpython import VideosSearch
 import yt_dlp
@@ -46,12 +47,15 @@ def download_playlist(playlist_id, output_dir, client_id, client_secret):
             print(f'No search results for: {song_name} by {artist_name}')
 
 if __name__ == '__main__':
-
-    client_id = '' #paste your client_id
-    client_secret = '' #paste your client_secret
-    playlist_id = '' #playlist id in you spotify playlist share link
-    output_directory = r"" #the path to which the songs should be downloaded
-    download_playlist(playlist_id, output_directory, client_id, client_secret)
+    client_id = '' #your spotify client id
+    client_secret = '' #your spotify client secret key
+    url = input("Enter the playlist URL: ")
+    if re.search('playlist/(\w+)',url): #for a playlist
+        ID = re.findall("playlist/(\w+)", url)[0]
+    if re.search('track/(\w+)',url): #for a song
+        ID = re.findall("track/(\w+)", url)[0]
+    output_directory = r"C:\Users\gnark\Downloads\Spotify playlist" #the path to which the songs should be downloaded
+    download_playlist(ID, output_directory, client_id, client_secret)
 
 
 
