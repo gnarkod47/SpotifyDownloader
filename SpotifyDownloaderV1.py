@@ -14,6 +14,7 @@ def download_playlist(playlist_id, output_dir, client_id, client_secret):
     playlist = sp.playlist(playlist_id)
     tracks = playlist['tracks']['items']
 
+
     # Download songs
     for track in tracks:
         song_name = track['track']['name']
@@ -42,13 +43,16 @@ def download_playlist(playlist_id, output_dir, client_id, client_secret):
             }
             ydl = yt_dlp.YoutubeDL(ydl_opts)
             ydl.download([video_url])
+            count = count + 1
 
         else:
             print(f'No search results for: {song_name} by {artist_name}')
 
 if __name__ == '__main__':
+    count = 0
     client_id = '' #your spotify client id
     client_secret = '' #your spotify client secret key
+
     url = input("Enter the playlist URL: ")
     if re.search('playlist/(\w+)',url): #for a playlist
         ID = re.findall("playlist/(\w+)", url)[0]
@@ -56,6 +60,7 @@ if __name__ == '__main__':
         ID = re.findall("track/(\w+)", url)[0]
     output_directory = r"C:\Users\gnark\Downloads\Spotify playlist" #the path to which the songs should be downloaded
     download_playlist(ID, output_directory, client_id, client_secret)
+    print("Downloaded ",count," songs")
 
 
 
